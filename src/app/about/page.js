@@ -1,12 +1,12 @@
 export default function AboutPage() {
   return (
-    <div className="md:overflow-hidden w-screen h-screen px-10 py-20 md:px-24 md:py-20 lg:px-32 lg:py-24 xl:px-56 xl:py-36">
+    <div className="overflow-scroll md:overflow-hidden w-screen h-screen px-10 py-20 md:px-24 md:py-20 lg:px-32 lg:py-24 xl:px-56 xl:py-36">
       <div className="flex flex-col justify-start items-center h-full w-full">
-        <div className="text-lg mb-5 md:mb-10 md:text-xl lg:text-2xl xl:text-3xl text-life-green self-start">
+        <div className="text-lg mb-5 md:mb-7 xl:mb-10 md:text-xl lg:text-2xl xl:text-3xl text-life-green self-start">
           ABOUT US
         </div>
 
-        <div className="text-sm text-justify grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="text-sm md:text-base lg:text-lg xl:text-xl text-justify grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             We are Life Architects, an architecture studio specialized in
             architecture, design and municipal procedures services. Aimed at any
@@ -38,26 +38,26 @@ export default function AboutPage() {
         <div className="mt-6 grid grid-cols-2 md:gap-8">
           <div className="flex items-end flex-col mr-2 md:mr-8">
             <div className="flex flex-col justify-center items-center">
-              <div className="text-xl md:text-3xl lg:text-4xl xl:text-5xl text-life-green mb-4">
+              <div className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-life-green mb-2 md:mb-4">
                 + 05
               </div>
-              <div className="text-xl md:text-3xl lg:text-4xl xl:text-3xl">
+              <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
                 Proyectos
               </div>
-              <div className="text-xl md:text-3xl lg:text-4xl xl:text-3xl">
+              <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
                 desarrollados
               </div>
             </div>
           </div>
           <div className="flex items-start flex-col ml-2 md:ml-8">
             <div className="flex flex-col justify-center items-center">
-              <div className="text-xl md:text-3xl lg:text-4xl xl:text-5xl text-life-green mb-4">
-                + 18, 000 m&sup2;
+              <div className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-life-green mb-2 md:mb-4">
+                + 18,000 m&sup2;
               </div>
-              <div className="text-xl md:text-3xl lg:text-4xl xl:text-3xl">
+              <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
                 Proyectos
               </div>
-              <div className="text-xl md:text-3xl lg:text-4xl xl:text-3xl">
+              <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
                 desarrollados
               </div>
             </div>

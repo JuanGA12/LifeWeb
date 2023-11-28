@@ -34,9 +34,9 @@ const Bar = () => {
       >
         <div
           ref={elementRef}
-          className={
-            'bg-transparent flex justify-center items-center h-14 md:h-16 lg:h-20 xl:h-24 border-b-2 border-r-2 border-gray-300 cursor-pointer'
-          }
+          className={`${
+            pathname != '/' ? 'bg-white' : ''
+          } md:bg-transparent flex justify-center items-center h-14 md:h-16 lg:h-20 xl:h-24 border-b-2 border-r-2 border-gray-300 cursor-pointer`}
           onClick={() => setShowBar(!showBar)}
           style={{ borderBottom: showBar ? '2px solid transparent' : '' }}
         >
@@ -47,7 +47,9 @@ const Bar = () => {
         </div>
         {showBar && (
           <>
-            <div className="md:hidden z-10 h-screen w-screen bg-white absolute top-0">
+            <div
+              className={`md:hidden z-10 h-screen w-screen bg-white absolute top-0 ${styles.animated}`}
+            >
               <div className="flex flex-col justify-center items-center text-xs md:text-sm xl:text-base h-full w-full">
                 <div
                   className="absolute top-4 right-3 cursor-pointer"
@@ -66,10 +68,7 @@ const Bar = () => {
                               : 'border-black'
                           }`}
                         >
-                          <Link
-                            className="md:text-xs lg:text-sm xl:text-base"
-                            href={'/' + item}
-                          >
+                          <Link className="text-sm" href={'/' + item}>
                             {item}
                           </Link>
                         </div>
@@ -92,7 +91,7 @@ const Bar = () => {
               </div>
             </div>
             <div
-              className={`md:block px-3 pt-4 uppercase bg-transparent border-r-2 border-gray-300 ${styles.animated}`}
+              className={`hidden md:block px-3 pt-4 uppercase bg-transparent border-r-2 border-gray-300 ${styles.animated}`}
               style={{
                 height: `calc(100vh - ${heightx}px)`,
               }}
@@ -122,13 +121,19 @@ const Bar = () => {
         )}
       </div>
       <div
-        className={`z-10 w-5/6 md:w-[90%] lg:w-11/12 flex justify-center absolute right-0 top-0 bg-transparent border-b-2 h-14 md:h-16 lg:h-20 xl:h-24 border-gray-300 py-3 md:py-4 lg:py-5 ${styles.Header}`}
+        className={`z-10 w-5/6 md:w-[90%] lg:w-11/12 flex justify-center absolute right-0 top-0 ${styles.Header}`}
       >
-        <img
-          src={'/LifeArq.png'}
-          className="cursor-pointer"
-          onClick={() => router.push('/')}
-        />
+        <div
+          className={`${
+            pathname != '/' ? 'bg-white' : ''
+          } md:bg-transparent border-b-2 h-14 md:h-16 lg:h-20 xl:h-24 border-gray-300 w-full flex justify-center items-center`}
+        >
+          <img
+            src={'/LifeArq.png'}
+            className="cursor-pointer w-14 h-8 md:w-20 md:h-10 lg:w-24 lg:h-12 xl:w-28 xl:h-14"
+            onClick={() => router.push('/')}
+          />
+        </div>
       </div>
       <footer className="hidden md:flex z-10 justify-evenly w-screen absolute bottom-0 py-5 text-xs md:text-sm xl:text-base">
         <div>Bienvenido@lifearquitectos.com</div>

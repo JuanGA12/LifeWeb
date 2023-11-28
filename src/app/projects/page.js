@@ -24,8 +24,23 @@ export default function ProjectsPage() {
           // install Swiper modules
           modules={[Navigation, A11y, Autoplay]}
           spaceBetween={80}
-          slidesPerView={3}
+          slidesPerView={1}
           navigation
+          loop="true"
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 30,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 50,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 50,
+            },
+          }}
           // autoplay
           // pagination={{ clickable: true }}
           // scrollbar={{ draggable: true }}
@@ -37,9 +52,11 @@ export default function ProjectsPage() {
                   <img
                     key={idx}
                     src={`/projects/${item}.jpg`}
-                    // className="w-10/12"
+                    // className="w-10/12 h-10/12"
                   />
-                  <div className="mt-4">{item}</div>
+                  <div className="mt-4 text-sm md:text-base lg:text-lg xl:text-xl">
+                    {item}
+                  </div>
                 </div>
               </SwiperSlide>
             );
