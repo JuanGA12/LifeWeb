@@ -122,7 +122,7 @@ export default function Home() {
     </main>
     */
     <main className="w-screen h-screen overflow-hidden">
-      <div className="z-0 w-screen h-screen bg-opacity absolute"></div>
+      <div className="z-0 w-screen h-screen bg-opacity absolute  overflow-hidden"></div>
       <div className="-z-10 overflow-hidden relative">
         <div
           className="flex transition-transform ease-out duration-500"

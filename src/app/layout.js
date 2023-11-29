@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${syne.className} overflow-hidden`}>
+      <body className={`${syne.className}`}>
         <Bar />
         {children}
       </body>

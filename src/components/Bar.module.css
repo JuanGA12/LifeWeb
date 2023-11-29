@@ -1,20 +1,14 @@
 .Header {
-  /* border-bottom: 1px solid white; */
-  background-color: rgba(255, 255, 255, 0.32);
+  background-color: #ffffff51;
 }
-
-.barra {
-  background-color: rgba(150, 18, 18, 0.597);
-}
-
-/* .hola {
-  border-top: 2px solid black;
-  margin-bottom: 5px;
-} */
 .animated {
   opacity: 0;
   transform: translateX(-20px);
   animation: fadeInLeft 0.5s ease-out forwards;
+}
+
+.animatedFadeOut {
+  animation: fadeOutAnimation 3s ease-in-out;
 }
 
 @keyframes fadeInLeft {
@@ -26,5 +20,15 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+@keyframes fadeOutAnimation {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
   }
 }

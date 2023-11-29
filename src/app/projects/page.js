@@ -14,15 +14,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import Footer from '@/components/Footer';
 
 export default function ProjectsPage() {
   const list = ['Amaz', 'Caserta', 'Goretti', 'Amaz', 'Caserta', 'Goretti'];
   return (
-    <div className="overflow-hidden w-screen h-screen px-10 py-36">
+    <div className="flex flex-col w-screen h-screen pt-20 px-10 md:px-24 md:pt-20 lg:px28 lg:pt-24 xl:px-40 xl:pt-36">
       <div className="flex justify-center items-center h-full w-full">
         <Swiper
-          // install Swiper modules
           modules={[Navigation, A11y, Autoplay]}
+          className="mySwiper"
           spaceBetween={80}
           slidesPerView={1}
           navigation
@@ -52,7 +53,7 @@ export default function ProjectsPage() {
                   <img
                     key={idx}
                     src={`/projects/${item}.jpg`}
-                    // className="w-10/12 h-10/12"
+                    className="w-full h-full img-res"
                   />
                   <div className="mt-4 text-sm md:text-base lg:text-lg xl:text-xl">
                     {item}
@@ -63,6 +64,7 @@ export default function ProjectsPage() {
           })}
         </Swiper>
       </div>
+      <Footer />
     </div>
   );
 }
