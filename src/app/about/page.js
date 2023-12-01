@@ -23,7 +23,7 @@ export default function AboutPage() {
               We are reliable professionals with very adaptable capabilities.
               Developed, committed to reaching the objectives.
             </div>
-            <div>
+            <div className="italic">
               Somos Life Arquitectos, una empresa naciente en servicios de
               arquitectura, diseño y trámites municipales. Orientado a toda
               empresa que desee profesionales confiables para obtener su diseño,

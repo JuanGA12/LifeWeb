@@ -29,7 +29,7 @@ export default function ServicesPage() {
                 <li>Development of the master plan.</li>
               </ul>
             </div>
-            <div>
+            <div className="italic">
               <div>
                 Contamos con distintos servicios los cuales comprenden en:
               </div>
