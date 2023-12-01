@@ -19,7 +19,7 @@ import Footer from '@/components/Footer';
 export default function ProjectsPage() {
   const list = ['Amaz', 'Caserta', 'Goretti', 'Amaz', 'Caserta', 'Goretti'];
   return (
-    <div className="flex flex-col w-screen h-screen pt-20 px-10 md:px-24 md:pt-20 lg:px28 lg:pt-24 xl:px-40 xl:pt-36">
+    <div className="dvhTOvh flex flex-col w-screen h-[100dvh] pt-20 px-10 md:px-24 md:pt-20 lg:px28 lg:pt-24 xl:px-40 xl:pt-36">
       <div className="flex justify-center items-center h-full w-full">
         <Swiper
           modules={[Navigation, A11y, Autoplay]}
