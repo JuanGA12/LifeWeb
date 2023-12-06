@@ -3,7 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { connectDB } from '../../../../libs/mongodb';
 import User from '../../../../models/user';
 import bcrypt from 'bcryptjs';
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -50,6 +50,11 @@ const handler = NextAuth({
       return session;
     },
   },
-});
+};
+// const handler = NextAuth({
+
+// });
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

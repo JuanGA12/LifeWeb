@@ -116,7 +116,7 @@ const ProjectsTables = () => {
                           />
                         </div>
                         <div className="flex flex-col justify-start">
-                          <div classNameName="mb-1 font-semibold ">
+                          <div className="mb-1 font-semibold ">
                             {project.nombre}
                           </div>
                         </div>
