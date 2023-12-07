@@ -11,7 +11,9 @@ export default function ManagerPage() {
         <div className="px-10 flex flex-col justify-center">
           <ProjectsTables />
         </div>
-        <div className="px-10 flex flex-col justify-center">2</div>
+        <div className="px-10 flex flex-col justify-center">
+          BLOG SECTION COMING SOON...
+        </div>
       </div>
       <div className="absolute top-4 right-5 flex">
         <div className="mr-2">Cerrar Sesión</div>

@@ -1,4 +1,3 @@
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -6,8 +5,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import { forwardRef, useState } from 'react';
+import Loader from './Loader';
+('@mui/material');
+import BadAlert from './BadAlert';
+import SuccessAlert from './SuccessAlert';
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -17,6 +19,10 @@ export default function NewProjectDialog({ open, setOpen }) {
   const handleClose = () => {
     setOpen(false);
   };
+  const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
+  const [openBadAlert, setOpenBadAlert] = useState(false);
+
+  const [loader, setLoader] = useState(false);
 
   const [portada, setPortada] = useState(null);
   const [galeria, setGaleria] = useState(null);
@@ -45,37 +51,70 @@ export default function NewProjectDialog({ open, setOpen }) {
     });
     setGaleria(images);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const project = {
-      titulo: formData.get('titulo'),
-      cliente: formData.get('cliente'),
-      colaborador1: formData.get('colaborador1'),
-      colaborador2: formData.get('colaborador2'),
-      colaborador3: formData.get('colaborador3'),
-      tipologia: formData.get('tipología'),
-      ubicacion: formData.get('ubicación'),
-      resumen: formData.get('resumen'),
-      año: formData.get('año'),
-    };
+    try {
+      setLoader(true);
+      const proyectExists = await fetch('/api/projectExists', {
+        method: 'POST',
+        body: JSON.stringify({ titulo: formData.get('titulo') }),
+      });
+      const proyectExistsResponse = await proyectExists.json();
+      if (proyectExistsResponse.exists) {
+        throw new Error('Project already exists');
+      }
 
-    const response = await fetch('/api/createProject', {
-      method: 'POST',
-      body: JSON.stringify(project),
-    });
-    const f = await response.json();
-    console.log(f);
-    // const imagesToUpload = galeriaData;
+      const responseImagePortada = await fetch('/api/uploadPhoto', {
+        method: 'POST',
+        body: portadaData,
+      });
+      const responseImagePortadaJson = await responseImagePortada.json();
 
-    // for (const [key, value] of portadaData) {
-    //   imagesToUpload.append(key, value);
-    // }
-    // await fetch('/api/uploadPhoto', {
-    //   method: 'POST',
-    //   body: imagesToUpload,
-    // });
+      const urlListGaleria = [];
+      for (const [key, value] of galeriaData) {
+        const data = new FormData();
+        data.append(key, value);
+        const responseImageGaleria = await fetch('/api/uploadPhoto', {
+          method: 'POST',
+          body: data,
+        });
+        const responseImageGaleriaJson = await responseImageGaleria.json();
+        urlListGaleria.push(responseImageGaleriaJson.url);
+      }
+
+      const project = {
+        titulo: formData.get('titulo'),
+        cliente: formData.get('cliente'),
+        colaborador1: formData.get('colaborador1'),
+        colaborador2: formData.get('colaborador2'),
+        colaborador3: formData.get('colaborador3'),
+        tipologia: formData.get('tipología'),
+        ubicacion: formData.get('ubicación'),
+        resumen: formData.get('resumen'),
+        año: formData.get('año'),
+        portada: responseImagePortadaJson.url,
+        galeria: urlListGaleria,
+      };
+
+      const responseProject = await fetch('/api/createProject', {
+        method: 'POST',
+        body: JSON.stringify(project),
+      });
+      if (responseProject.status == 201) {
+        const responseProjectJson = await responseProject.json();
+        setOpenSuccessAlert(true);
+      }
+      setOpenBadAlert(true);
+      setLoader(false);
+    } catch (error) {
+      console.log(error);
+      setOpenBadAlert(true);
+      setLoader(false);
+    }
   };
+
   return (
     <>
       <Dialog
@@ -84,6 +123,13 @@ export default function NewProjectDialog({ open, setOpen }) {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
+        {loader && (
+          <div className="h-screen w-screen absolute top-0 flex flex-col justify-center items-center bg-white z-50">
+            <Loader />
+            Uploading...
+          </div>
+        )}
+
         <AppBar sx={{ position: 'relative' }}>
           <Toolbar>
             <IconButton
@@ -97,14 +143,11 @@ export default function NewProjectDialog({ open, setOpen }) {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               Nuevo projecto
             </Typography>
-            {/* <Button autoFocus color="inherit" onClick={handleClose}>
-              Crear
-            </Button> */}
           </Toolbar>
         </AppBar>
         <div>
           <div className="w-screen p-10">
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form className="flex flex-col" onSubmit={(e) => handleSubmit(e)}>
               <div className="grid grid-cols-2 gap-8">
                 <div>
                   <div className="grid grid-cols-2 gap-5 mb-4">
@@ -265,7 +308,7 @@ export default function NewProjectDialog({ open, setOpen }) {
                       accept="image/*"
                       required
                     />
-                    {portada && <img src={portada} className="w-1/3 m-3" />}
+                    {portada && <img src={portada} className="w-1/5 m-3" />}
                   </div>
                   <div className="mb-4">
                     <label
@@ -285,17 +328,22 @@ export default function NewProjectDialog({ open, setOpen }) {
                         handleGaleria(e);
                       }}
                     />
-                    <div className="flex flex-wrap w-full">
+                    <div className="flex flex-wrap w-full overflow-scroll h-96">
                       {galeria &&
                         galeria.map((img) => {
                           return (
-                            <img key={img} src={img} className="w-1/3 m-3" />
+                            <img
+                              key={img}
+                              src={img}
+                              className="w-auto h-3/5 m-3"
+                            />
                           );
                         })}
                     </div>
                   </div>
                 </div>
               </div>
+
               <button
                 // onClick={handleClose}
                 type="submit"
@@ -303,6 +351,18 @@ export default function NewProjectDialog({ open, setOpen }) {
               >
                 Registro
               </button>
+              <div className="mt-3 flex w-[30%] justify-center flex-col items-center self-center">
+                <SuccessAlert
+                  open={openSuccessAlert}
+                  setOpen={setOpenSuccessAlert}
+                  message="¡Se creó el proyecto correctamente!"
+                />
+                <BadAlert
+                  open={openBadAlert}
+                  setOpen={setOpenBadAlert}
+                  message="¡Hubo un error al crear el proyecto!"
+                />
+              </div>
             </form>
           </div>
         </div>

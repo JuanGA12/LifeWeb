@@ -2,14 +2,14 @@ import Footer from '@/components/Footer';
 
 export default function AboutPage() {
   return (
-    <div className="w-screen h-[100dvh] pt-20 px-10 md:px-24 md:pt-20 lg:px-32 lg:pt-24 xl:px-56 xl:pt-36">
+    <div className="w-screen h-[100dvh] pt-20 px-10 md:px-24 md:pt-20 lg:px-28 lg:pt-24 xl:px-56 xl:pt-32">
       <div className="w-full h-full flex flex-col justify-between items-center">
         <div className="flex flex-col justify-center items-center">
-          <div className="text-lg mb-5 md:mb-7 xl:mb-10 md:text-xl lg:text-2xl xl:text-3xl text-life-green self-start">
+          <div className="text-lg mb-5 md:mb-7 md:text-xl lg:text-xl xl:text-2xl dark:text-life-green self-start">
             ABOUT US
           </div>
 
-          <div className="text-sm md:text-base lg:text-lg xl:text-xl text-justify grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="text-sm md:text-base text-justify grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 xl:gap-20">
             <div>
               We are Life Architects, an architecture studio specialized in
               architecture, design and municipal procedures services. Aimed at
@@ -23,7 +23,7 @@ export default function AboutPage() {
               We are reliable professionals with very adaptable capabilities.
               Developed, committed to reaching the objectives.
             </div>
-            <div className="italic">
+            <div className="italic mt-4 md:mt-0">
               Somos Life Arquitectos, una empresa naciente en servicios de
               arquitectura, diseño y trámites municipales. Orientado a toda
               empresa que desee profesionales confiables para obtener su diseño,
@@ -39,28 +39,28 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="mt-6 mb-9 grid grid-cols-2 md:gap-8">
-            <div className="flex items-end flex-col mr-2 md:mr-8">
+            <div className="flex items-end flex-col mr-3 md:mr-8">
               <div className="flex flex-col justify-center items-center">
-                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-life-green mb-2 md:mb-4">
-                  + 05
+                <div className="text-xl md:text-2xl xl:text-4xl text-life-green mb-2 md:mb-4">
+                  + 06
                 </div>
-                <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+                <div className="text-base md:text-xl xl:text-2xl">
                   Proyectos
                 </div>
-                <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+                <div className="text-base md:text-xl xl:text-2xl">
                   desarrollados
                 </div>
               </div>
             </div>
-            <div className="flex items-start flex-col ml-2 md:ml-8">
+            <div className="flex items-start flex-col ml-3 md:ml-8">
               <div className="flex flex-col justify-center items-center">
-                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-life-green mb-2 md:mb-4">
-                  + 18,000 m&sup2;
+                <div className="text-xl md:text-2xl  xl:text-4xl text-life-green mb-2 md:mb-4">
+                  + 18,000
                 </div>
-                <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-                  Proyectos
+                <div className="text-base md:text-xl xl:text-2xl">
+                  Metros cuadrados
                 </div>
-                <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+                <div className="text-base md:text-xl  xl:text-2xl">
                   desarrollados
                 </div>
               </div>

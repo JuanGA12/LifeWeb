@@ -16,36 +16,22 @@ export async function POST(request) {
   }
   try {
     await connectDB();
-
     const data = await request.json();
+    console.log('data', data);
     const projectFound = await Project.findOne({ titulo: data.titulo });
 
     if (projectFound)
       return NextResponse.json(
         {
           message: 'Titulo already exists',
+          exists: true,
         },
         {
           status: 409,
         }
       );
 
-    const project = new Project({
-      titulo: data.titulo,
-      cliente: data.cliente,
-      colaborador1: data.colaborador1,
-      colaborador2: data.colaborador2,
-      colaborador3: data.colaborador3,
-      tipologia: data.tipologia,
-      ubicacion: data.ubicacion,
-      resumen: data.resumen,
-      año: data.año,
-      portada: data.portada,
-      galeria: data.galeria,
-    });
-    const savedProject = await project.save();
-
-    return NextResponse.json(savedProject, { status: 201 });
+    return NextResponse.json({ exists: false }, { status: 201 });
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       return NextResponse.json(

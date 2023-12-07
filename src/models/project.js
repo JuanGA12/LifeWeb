@@ -45,6 +45,12 @@ const projectSchema = new Schema({
   galeria: {
     type: [String],
     required: [true, 'Galeria is required'],
+    validate: {
+      validator: function (array) {
+        return array.length > 0;
+      },
+      message: 'Galeria must not be empty',
+    },
   },
 });
 

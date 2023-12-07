@@ -2,7 +2,7 @@ import { Instagram, Twitter, LinkedIn, WhatsApp } from '@mui/icons-material';
 const Footer = () => {
   return (
     <footer
-      className={`hidden md:flex z-0 justify-evenly w-screen py-5 text-xs md:text-sm xl:text-base self-center`}
+      className={`hidden md:flex z-0 justify-evenly w-screen py-5 text-xs md:text-sm self-center`}
     >
       <div>contacto@lifearquitectos.com</div>
       <div>Av. Coronel Andrés Reyes 550 – Piso 02, San Isidro</div>
