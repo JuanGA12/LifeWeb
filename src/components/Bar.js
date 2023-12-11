@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 
 const Bar = () => {
   const pathname = usePathname();
-  const items = ['projects', 'about', 'staff', 'services', 'clients'];
+  const items = ['projects', 'about', 'staff', 'services', 'blog', 'clients'];
   const [showBar, setShowBar] = useState(false);
 
   const [heightx, setHeight] = useState(0);
@@ -100,7 +100,13 @@ const Bar = () => {
                         Av. Coronel Andrés Reyes 550 – Piso 02, San Isidro
                       </div>
                       <div className="flex">
-                        <Instagram className="text-base mr-2 cursor-pointer" />
+                        <a
+                          href="https://www.instagram.com/lifearquitectos"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Instagram className="mr-3 cursor-pointer" />
+                        </a>
                         <Twitter className="text-base mr-2 cursor-pointer" />
                         <LinkedIn className="text-base mr-2 cursor-pointer" />
                         <WhatsApp className="text-base cursor-pointer" />

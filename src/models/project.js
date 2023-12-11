@@ -22,6 +22,10 @@ const projectSchema = new Schema({
     type: String,
     required: false,
   },
+  metraje: {
+    type: String,
+    required: [true, 'Metraje is required'],
+  },
   tipologia: {
     type: String,
     required: [true, 'Tipologia is required'],

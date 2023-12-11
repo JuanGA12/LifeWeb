@@ -85,12 +85,13 @@ export default function NewProjectDialog({ open, setOpen }) {
       }
 
       const project = {
-        titulo: formData.get('titulo'),
+        titulo: formData.get('titulo').toLocaleLowerCase(),
         cliente: formData.get('cliente'),
         colaborador1: formData.get('colaborador1'),
         colaborador2: formData.get('colaborador2'),
         colaborador3: formData.get('colaborador3'),
         tipologia: formData.get('tipología'),
+        metraje: formData.get('metraje'),
         ubicacion: formData.get('ubicación'),
         resumen: formData.get('resumen'),
         año: formData.get('año'),
@@ -105,8 +106,9 @@ export default function NewProjectDialog({ open, setOpen }) {
       if (responseProject.status == 201) {
         const responseProjectJson = await responseProject.json();
         setOpenSuccessAlert(true);
+      } else {
+        setOpenBadAlert(true);
       }
-      setOpenBadAlert(true);
       setLoader(false);
     } catch (error) {
       console.log(error);
@@ -243,6 +245,21 @@ export default function NewProjectDialog({ open, setOpen }) {
                         required
                       />
                     </div>
+
+                    <div className="">
+                      <label
+                        htmlFor="Metraje"
+                        className="block mb-2 text-sm text-gray-600"
+                      >
+                        Metraje
+                      </label>
+                      <input
+                        type="text"
+                        id="metraje"
+                        name="metraje"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                      />
+                    </div>
                     <div className="">
                       <label
                         htmlFor="Ubicación"
@@ -258,6 +275,8 @@ export default function NewProjectDialog({ open, setOpen }) {
                         required
                       />
                     </div>
+                  </div>
+                  <div className="grid grid-cols-3 mb-4 gap-5">
                     <div className="">
                       <label
                         htmlFor="Año"
@@ -273,21 +292,20 @@ export default function NewProjectDialog({ open, setOpen }) {
                         required
                       />
                     </div>
-                  </div>
-
-                  <div className="">
-                    <label
-                      htmlFor="Resumen"
-                      className="block mb-2 text-sm text-gray-600"
-                    >
-                      Resumen
-                    </label>
-                    <textarea
-                      type="text"
-                      id="resumen"
-                      name="resumen"
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                    />
+                    <div className="col-span-2">
+                      <label
+                        htmlFor="Resumen"
+                        className="block mb-2 text-sm text-gray-600"
+                      >
+                        Resumen
+                      </label>
+                      <textarea
+                        type="text"
+                        id="resumen"
+                        name="resumen"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div>

@@ -16,37 +16,16 @@ export async function POST(request) {
   }
   try {
     await connectDB();
-
-    const data = await request.json();
-    const projectFound = await Project.findOne({ titulo: data.titulo });
-
-    if (projectFound)
+    const { titulo } = await request.json();
+    const project = await Project.findOne({ titulo });
+    if (!project) {
       return NextResponse.json(
-        {
-          message: 'Titulo already exists',
-        },
-        {
-          status: 409,
-        }
+        { message: 'No project found' },
+        { status: 409 }
       );
-
-    const project = new Project({
-      titulo: data.titulo,
-      cliente: data.cliente,
-      colaborador1: data.colaborador1,
-      colaborador2: data.colaborador2,
-      colaborador3: data.colaborador3,
-      tipologia: data.tipologia,
-      metraje: data.metraje,
-      ubicacion: data.ubicacion,
-      resumen: data.resumen,
-      año: data.año,
-      portada: data.portada,
-      galeria: data.galeria,
-    });
-    const savedProject = await project.save();
-
-    return NextResponse.json(savedProject, { status: 201 });
+    } else {
+      return NextResponse.json(project, { status: 201 });
+    }
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       return NextResponse.json(
