@@ -1,19 +1,9 @@
 import { connectDB } from '@/libs/mongodb';
-import { authOptions } from '../auth/[...nextauth]/route';
-import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 import Project from '@/models/project';
 import mongoose from 'mongoose';
 
 export async function GET(request) {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    return NextResponse.json(
-      { message: 'You must be logged in.' },
-      { status: 402 }
-    );
-  }
   try {
     await connectDB();
     const projects = await Project.find({}, 'titulo portada');
