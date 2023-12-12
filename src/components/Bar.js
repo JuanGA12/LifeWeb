@@ -103,13 +103,31 @@ const Bar = () => {
                         <a
                           href="https://www.instagram.com/lifearquitectos"
                           target="_blank"
-                          rel="noopener noreferrer"
+                          rel="noopener norefer"
                         >
                           <Instagram className="mr-3 cursor-pointer" />
                         </a>
-                        <Twitter className="text-base mr-2 cursor-pointer" />
-                        <LinkedIn className="text-base mr-2 cursor-pointer" />
-                        <WhatsApp className="text-base cursor-pointer" />
+                        <a
+                          href="https://x.com/LifeArquitectos"
+                          target="_blank"
+                          rel="noopener norefer"
+                        >
+                          <Twitter className="mr-3 cursor-pointer" />
+                        </a>
+                        <a
+                          href="http://www.linkedin.com/in/life-arquitectos-a817ab2a4"
+                          target="_blank"
+                          rel="noopener norefer"
+                        >
+                          <LinkedIn className="mr-3 cursor-pointer" />
+                        </a>
+                        <a
+                          href="https://wa.me/51981301126?text=¡Hola! Quisiera más información sobre Life Arquitectos."
+                          target="_blank"
+                          rel="noopener norefer"
+                        >
+                          <WhatsApp className="cursor-pointer" />
+                        </a>
                       </div>
                     </div>
                   </div>

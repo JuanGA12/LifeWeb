@@ -314,7 +314,7 @@ export default function NewProjectDialog({ open, setOpen }) {
                       htmlFor="portada"
                       className="block mb-2 text-sm text-gray-600"
                     >
-                      Foto de portada (23px x 23px)
+                      Foto de portada (750px x 750px)
                     </label>
                     <input
                       onChange={(e) => {

@@ -30,7 +30,6 @@ export default function ProjectsPage() {
     }
     fetchData();
   }, []);
-  // const list = ['Amaz', 'Caserta', 'Goretti', 'Amaz', 'Caserta', 'Goretti'];
   return (
     <div className="dvhTOvh flex flex-col w-screen h-[100dvh] pt-20 px-10 md:px-24 md:pt-20 lg:px28 lg:pt-24 xl:px-40 xl:pt-36">
       <div className="flex justify-center items-center h-full w-full">
@@ -72,7 +71,7 @@ export default function ProjectsPage() {
                     <img
                       key={idx}
                       src={item.portada}
-                      className="w-full h-1/2 img-res"
+                      className="w-full h-full img-res"
                     />
                     <div className="mt-4 text-sm md:text-base lg:text-lg xl:text-xl">
                       {item.titulo.toLocaleUpperCase()}

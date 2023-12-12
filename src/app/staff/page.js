@@ -27,6 +27,7 @@ export default function StaffPage() {
               <div className="mt-3">
                 <div>Arch. Renato Ferrando</div>
                 <div>Arch. Ana Paula Gálvez</div>
+                <div>Arch. Gabriela Garcia</div>
                 <div>Eng. Alicia Artica</div>
               </div>
             </div>

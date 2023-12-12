@@ -17,6 +17,7 @@ export default function Page() {
       if (projectFound.status == 201) {
         const projectFoundJson = await projectFound.json();
         setProject(projectFoundJson);
+        console.log(projectFoundJson);
       } else {
         router.push('/error');
       }
@@ -38,7 +39,7 @@ export default function Page() {
             <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-8 overflow-hidden hiddenTOscroll">
               <div>
                 <div className="flex flex-col justify-start items-start">
-                  <div className="text-lg md:text-xl lg:text-xl xl:text-2xl mb-5 md:mb-7 xl:mb-10 text-life-green self-start">
+                  <div className="text-lg md:text-xl lg:text-xl xl:text-2xl mb-5 md:mb-5 xl:mb-6 dark:text-life-green self-start">
                     {project.titulo.toLocaleUpperCase()}
                   </div>
                   {project.colaborador1 && (
@@ -56,7 +57,7 @@ export default function Page() {
                       +{project.colaborador3}
                     </div>
                   )}
-                  <div className="w-full border-t border-life-green mt-10" />
+                  <div className="w-full border-t border-life-green mt-6" />
                   <div className="mb-3 text-sm md:text-base">
                     {project.tipologia}
                   </div>
@@ -70,7 +71,7 @@ export default function Page() {
                   <div>Client: {project.cliente}</div>
                 </div>
               </div>
-              <div className="lg:col-start-2 lg:col-span-3 overflow-scroll scrollTOvisible">
+              <div className="lg:col-start-2 lg:col-span-3 overflow-scroll scrollTOvisible flex flex-col items-center">
                 <div className="flex justify-center flex-wrap items-center">
                   {project.galeria.map((item, id) => {
                     return (
@@ -87,6 +88,7 @@ export default function Page() {
                     );
                   })}
                 </div>
+                <div className="text-center">{project.resumen}</div>
               </div>
             </div>
             <Footer />
