@@ -4,7 +4,6 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import ProjectDialog from './ProjectDialog';
 import { useEffect, useState } from 'react';
 import NewProjectDialog from './NewProjectDialog';
-import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import { useRouter } from 'next/navigation';
 const ProjectsTables = () => {
   const [open, setOpen] = useState(false);
@@ -77,13 +76,12 @@ const ProjectsTables = () => {
 
                       <td className="p-3 pr-0 text-end">
                         <EditOutlinedIcon
-                          className="cursor-pointer mr-5 hover:text-life-green text-3xl"
+                          className="cursor-pointer hover:text-life-green text-3xl"
                           onClick={() => {
                             setProjectId(project.titulo);
                             setOpen(true);
                           }}
                         />
-                        <DeleteForeverOutlinedIcon className="cursor-pointer text-3xl hover:text-red-500" />
                       </td>
                     </tr>
                   );
