@@ -5,6 +5,7 @@ import ProjectDialog from './ProjectDialog';
 import { useEffect, useState } from 'react';
 import NewProjectDialog from './NewProjectDialog';
 import { useRouter } from 'next/navigation';
+
 const ProjectsTables = () => {
   const [open, setOpen] = useState(false);
   const [newProject, setNewProject] = useState(false);
