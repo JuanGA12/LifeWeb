@@ -17,7 +17,6 @@ export async function POST(request) {
   try {
     await connectDB();
     const data = await request.json();
-    console.log('data', data);
     const projectFound = await Project.findOne({ titulo: data.titulo });
 
     if (projectFound)

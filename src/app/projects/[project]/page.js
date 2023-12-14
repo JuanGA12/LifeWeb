@@ -17,7 +17,6 @@ export default function Page() {
       if (projectFound.status == 201) {
         const projectFoundJson = await projectFound.json();
         setProject(projectFoundJson);
-        console.log(projectFoundJson);
       } else {
         router.push('/error');
       }
