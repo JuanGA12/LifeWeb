@@ -176,7 +176,7 @@ const Bar = () => {
                 <div>
                   <img
                     src={'/LifeArq.png'}
-                    className="cursor-pointer w-14 h-8 md:w-20 md:h-10 lg:w-24 lg:h-12 xl:w-28 xl:h-14"
+                    className="cursor-pointer w-12 h-6 md:w-14 md:h-8 lg:w-16 lg:h-8 xl:w-20 xl:h-10"
                     onClick={() => router.push('/')}
                   />
                 </div>
