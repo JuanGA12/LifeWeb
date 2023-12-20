@@ -22,7 +22,11 @@ const Bar = () => {
 
   const router = useRouter();
 
-  const noBarSites = ['/site/login', '/site/manager'];
+  const noBarSites = [
+    '/site/login',
+    '/site/manager',
+    '/site/collaborators/editor',
+  ];
 
   useEffect(() => {
     if (!noBarSites.includes(pathname))

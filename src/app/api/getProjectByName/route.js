@@ -1,6 +1,4 @@
 import { connectDB } from '@/libs/mongodb';
-import { authOptions } from '../auth/[...nextauth]/route';
-import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 import Project from '@/models/project';
 import mongoose from 'mongoose';

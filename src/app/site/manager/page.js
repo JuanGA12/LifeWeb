@@ -4,7 +4,7 @@ import ProjectsTables from '@/components/ProjectsTables';
 import { signOut, useSession } from 'next-auth/react';
 export default function ManagerPage() {
   const { data: session, status } = useSession();
-  // console.log(session, status);
+
   return (
     <div className="flex h-screen w-screen overflow-hidden flex-col items-center justify-center">
       <div className="grid grid-cols-2 h-full w-full flex flex-col justify-center items-center gap-5">
