@@ -7,6 +7,7 @@ export async function GET(request) {
   try {
     await connectDB();
     const projects = await Project.find({}, 'titulo portada');
+    console.log(projects);
     if (projects.length == 0) {
       return NextResponse.json(
         { message: 'No projects founds' },
