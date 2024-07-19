@@ -171,7 +171,7 @@ export default function UserDialog({
                       htmlFor="password"
                       className="block mb-2 mt-5 text-sm text-gray-600"
                     >
-                      New Password
+                      Nueva contraseña
                     </label>
                     <input
                       type="text"
@@ -186,7 +186,7 @@ export default function UserDialog({
                       htmlFor="passwordManager"
                       className="block mb-2 mt-5 text-sm text-gray-600"
                     >
-                      Enter your Manager Password again
+                      Vuelve a ingresar la Contraseña Maestra
                     </label>
                     <input
                       onChange={(e) => {
@@ -206,7 +206,7 @@ export default function UserDialog({
                     type="submit"
                     className=" mr-3 w-32 bg-[#131e2f] text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 mb-2"
                   >
-                    Edit
+                    Editar
                   </button>
                   <button
                     onClick={() => {
@@ -215,7 +215,7 @@ export default function UserDialog({
                     type="button"
                     className=" w-32 bg-[#131e2f] text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 mb-2"
                   >
-                    Delete
+                    Borrar
                   </button>
                 </div>
                 <div className="mt-3 flex w-[30%] justify-center flex-col items-center self-center">

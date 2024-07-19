@@ -12,7 +12,7 @@ export default function ManagerPage() {
           <ProjectsTables />
         </div>
         <div className="px-10 flex flex-col justify-center">
-          BLOG SECTION COMING SOON...
+          Sección Blog proximamente
         </div>
       </div>
       <div className="absolute top-4 right-5 flex">
