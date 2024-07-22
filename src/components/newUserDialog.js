@@ -41,12 +41,13 @@ export default function NewUserDialog({ open, setOpen, id }) {
       const responseUserJson = await responseUser.json();
       if (responseUser.status == 201 && responseUserJson.valid) {
         setOpenSuccessAlert(true);
+        window.location.reload();
       } else {
         setOpenBadAlert(true);
       }
       setLoader(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setOpenBadAlert(true);
       setLoader(false);
     }

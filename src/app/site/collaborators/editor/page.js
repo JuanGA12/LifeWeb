@@ -70,6 +70,7 @@ export default function Page() {
     }
   }, [success, id]);
   const [openBadAlert, setOpenBadAlert] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">
       {success ? (

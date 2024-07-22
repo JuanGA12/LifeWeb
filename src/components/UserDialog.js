@@ -35,6 +35,7 @@ export default function UserDialog({
   const [loader, setLoader] = useState(false);
   const [user, setUser] = useState(null);
   const [masterPassword, setMasterPassword] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -53,6 +54,7 @@ export default function UserDialog({
       if (responseUser.status == 201 && responseUserJson.edited) {
         setSuccessMessage('¡Se editó el usuario correctamente!');
         setOpenSuccessAlert(true);
+        window.location.reload();
       } else {
         setErrorMessage('¡Hubo un error al editar el usuario!');
         setOpenBadAlert(true);
@@ -80,15 +82,15 @@ export default function UserDialog({
       if (responseUser.status == 201 && responseUserJson.deleted) {
         setSuccessMessage('¡Se eliminó el usuario correctamente!');
         setOpenSuccessAlert(true);
-        // handleClose();
+        window.location.reload();
       } else {
         setErrorMessage('¡Hubo un error al eliminar el usuario!');
         setOpenBadAlert(true);
       }
       setLoader(false);
     } catch (error) {
-      console.log(error);
-      setErrorMessage('¡Hubo un error al eliminar el usuario!');
+      // console.log(error);
+      setErrorMessage(error);
       setOpenBadAlert(true);
       setLoader(false);
     }
