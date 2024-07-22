@@ -56,6 +56,15 @@ const projectSchema = new Schema({
       message: 'Galeria must not be empty',
     },
   },
+  orden: {
+    type: Number,
+    required: [true, 'Orden is required'],
+    default: 0,
+  },
+  url: {
+    type: String,
+    required: [true, 'Url is required'],
+  },
 });
 
 const Project = models.Project || model('Project', projectSchema);

@@ -53,7 +53,7 @@ export default function ServicesPage() {
             </div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

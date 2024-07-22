@@ -31,6 +31,8 @@ export async function POST(request) {
       );
 
     const project = new Project({
+      orden: data.orden,
+      url: data.url,
       titulo: data.titulo,
       cliente: data.cliente,
       colaborador1: data.colaborador1,

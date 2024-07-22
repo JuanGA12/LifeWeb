@@ -3,20 +3,18 @@ import { NextResponse } from 'next/server';
 import Project from '@/models/project';
 import mongoose from 'mongoose';
 
-export async function GET(request) {
+export async function POST(request) {
   try {
     await connectDB();
-    const projects = await Project.find({}, 'titulo portada url galeria').sort({
-      orden: 1,
-    });
-    console.log(projects);
-    if (projects.length == 0) {
+    const { url } = await request.json();
+    const project = await Project.findOne({ url });
+    if (!project) {
       return NextResponse.json(
-        { message: 'No projects founds' },
+        { message: 'No project found' },
         { status: 409 }
       );
     } else {
-      return NextResponse.json(projects, { status: 201 });
+      return NextResponse.json(project, { status: 201 });
     }
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {

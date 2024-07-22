@@ -19,29 +19,24 @@ export async function POST(request) {
 
     const data = await request.json();
 
-    const project = {
-      orden: data.orden,
-      url: data.url,
-      titulo: data.titulo,
-      cliente: data.cliente,
-      colaborador1: data.colaborador1,
-      colaborador2: data.colaborador2,
-      colaborador3: data.colaborador3,
-      tipologia: data.tipologia,
-      metraje: data.metraje,
-      ubicacion: data.ubicacion,
-      resumen: data.resumen,
-      año: data.año,
-      portada: data.portada,
-      galeria: data.galeria,
-    };
+    const projectDeleted = await Project.deleteOne({ titulo: data.titulo });
 
-    const updateProject = await Project.findOneAndUpdate(
-      { _id: data._id },
-      { $set: project },
-      { new: true }
+    if (projectDeleted.deletedCount == 1) {
+      return NextResponse.json(
+        {
+          message: 'Proyecto eliminado',
+        },
+        { status: 201 }
+      );
+    }
+    return NextResponse.json(
+      {
+        message: 'Error al eliminar proyecto',
+      },
+      {
+        status: 400,
+      }
     );
-    return NextResponse.json(updateProject, { status: 201 });
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       return NextResponse.json(

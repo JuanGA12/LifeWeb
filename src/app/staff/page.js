@@ -33,7 +33,7 @@ export default function StaffPage() {
             </div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

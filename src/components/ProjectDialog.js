@@ -26,6 +26,7 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
         method: 'POST',
         body: JSON.stringify({ titulo }),
       });
+
       if (projectFound.status == 201) {
         const projectFoundJson = await projectFound.json();
         setProject(projectFoundJson);
@@ -39,6 +40,21 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
   }, [titulo]);
 
   const handleClose = () => {
+    setEditTitulo(null);
+    setCliente(null);
+    setColaborador1(null);
+    setColaborador2(null);
+    setColaborador3(null);
+    setTipologia(null);
+    setMetraje(null);
+    setUbicacion(null);
+    setAño(null);
+    setResumen(null);
+    setNewPortada(null);
+    setNewPortadaPlaceHolder(null);
+    setNewGaleria(null);
+    setNewGaleriaPlaceHolder(null);
+    setOrden(null);
     setOpen(false);
   };
   const [succesMessage, setSuccesMessage] = useState(null);
@@ -110,6 +126,7 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
   const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
   const [openBadAlert, setOpenBadAlert] = useState(false);
 
+  const [editTitulo, setEditTitulo] = useState(null);
   const [cliente, setCliente] = useState(null);
   const [colaborador1, setColaborador1] = useState(null);
   const [colaborador2, setColaborador2] = useState(null);
@@ -119,6 +136,7 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
   const [ubicacion, setUbicacion] = useState(null);
   const [año, setAño] = useState(null);
   const [resumen, setResumen] = useState(null);
+  const [orden, setOrden] = useState(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -147,7 +165,10 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
       }
 
       const newProject = {
-        titulo: project.titulo,
+        _id: project._id,
+        url: formData.get('titulo').replaceAll(' ', '_').toLocaleLowerCase(),
+        orden: formData.get('orden'),
+        titulo: formData.get('titulo'),
         cliente: formData.get('cliente'),
         colaborador1: formData.get('colaborador1'),
         colaborador2: formData.get('colaborador2'),
@@ -168,15 +189,24 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
       });
       if (responseProject.status == 201) {
         const responseProjectJson = await responseProject.json();
+        // Se deberia eliminar la portada antigua de bitbucket?
+        if (responseImagePortadaJson?.url) {
+          await fetch('/api/deletePhoto', {
+            method: 'POST',
+            body: JSON.stringify({ imageLink: project.portada }),
+          });
+        }
+
         setSuccesMessage('¡Se editó el proyecto correctamente!');
         setOpenSuccessAlert(true);
+        window.location.reload();
       } else {
         setErrorMessage('¡Hubo un error al editar el proyecto!');
         setOpenBadAlert(true);
       }
       setLoader(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setErrorMessage('¡Hubo un error al editar el proyecto!');
       setOpenBadAlert(true);
       setLoader(false);
@@ -219,7 +249,7 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Editar projecto
+              Editar proyecto
             </Typography>
           </Toolbar>
         </AppBar>
@@ -229,7 +259,7 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
               <form className="flex flex-col" onSubmit={(e) => handleSubmit(e)}>
                 <div className="grid grid-cols-2 gap-8">
                   <div>
-                    <div className="grid grid-cols-2 gap-5 mb-4">
+                    <div className="grid grid-cols-3 gap-5 mb-4">
                       <div>
                         <label
                           htmlFor="titulo"
@@ -238,8 +268,11 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
                           Titulo
                         </label>
                         <input
-                          disabled
-                          defaultValue={project.titulo}
+                          onChange={(e) => {
+                            setEditTitulo(e.target.value);
+                          }}
+                          value={valueInput(editTitulo, project.titulo)}
+                          // defaultValue={project.titulo}
                           type="text"
                           id="titulo"
                           name="titulo"
@@ -262,6 +295,25 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
                           type="text"
                           id="cliente"
                           name="cliente"
+                          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#131e2f]"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="orden"
+                          className="block mb-2 text-sm text-gray-600"
+                        >
+                          Orden
+                        </label>
+                        <input
+                          onChange={(e) => {
+                            setOrden(e.target.value);
+                          }}
+                          value={valueInput(orden, project.orden)}
+                          type="number"
+                          id="orden"
+                          name="orden"
                           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#131e2f]"
                           required
                         />
