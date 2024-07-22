@@ -98,7 +98,7 @@ const Bar = () => {
                         );
                       })}
                     </div>
-                    <div className="menu-res mt-32 flex justify-center items-center flex-col w-full">
+                    {/* <div className="menu-res mt-32 flex justify-center items-center flex-col w-full">
                       <div className="mb-2">contacto@lifearquitectos.com</div>
                       <div className="mb-2">
                         Av. Coronel Andrés Reyes 550 – Piso 02, San Isidro
@@ -133,7 +133,7 @@ const Bar = () => {
                           <WhatsApp className="cursor-pointer" />
                         </a>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div

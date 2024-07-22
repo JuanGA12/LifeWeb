@@ -5,14 +5,14 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 export default function Page() {
   const pathname = usePathname();
-  const projectTitle = pathname.split('/')[2];
+  const projectUrl = pathname.split('/')[2];
   const router = useRouter();
 
   useEffect(() => {
     async function fetchData() {
-      const projectFound = await fetch('/api/getProjectByName', {
+      const projectFound = await fetch('/api/getProjectByUrl', {
         method: 'POST',
-        body: JSON.stringify({ titulo: projectTitle }),
+        body: JSON.stringify({ url: projectUrl }),
       });
       if (projectFound.status == 201) {
         const projectFoundJson = await projectFound.json();
@@ -67,7 +67,9 @@ export default function Page() {
                     {project.ubicacion}
                   </div>
                   <div className="mb-3 text-sm md:text-base">{project.año}</div>
-                  <div>Client: {project.cliente}</div>
+                  <div className="mb-3 text-sm md:text-base">
+                    Client: {project.cliente}
+                  </div>
                 </div>
               </div>
               <div className="lg:col-start-2 lg:col-span-3 overflow-scroll scrollTOvisible flex flex-col items-center">
@@ -87,10 +89,12 @@ export default function Page() {
                     );
                   })}
                 </div>
-                <div className="text-center">{project.resumen}</div>
+                <div className="text-center text-sm md:text-base mb-2 md:mb-5 mt-2 md:mt-5">
+                  {project.resumen}
+                </div>
               </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </div>
 
           <ImageDialog open={open} setOpen={setOpen} image={image} />

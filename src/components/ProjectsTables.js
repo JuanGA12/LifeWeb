@@ -1,12 +1,17 @@
 'use client';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import ProjectDialog from './ProjectDialog';
 import { useEffect, useState } from 'react';
 import NewProjectDialog from './NewProjectDialog';
 import { useRouter } from 'next/navigation';
+import SuccessAlert from './SuccessAlert';
+import BadAlert from './BadAlert';
 
 const ProjectsTables = () => {
+  const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
+  const [openBadAlert, setOpenBadAlert] = useState(false);
   const [open, setOpen] = useState(false);
   const [newProject, setNewProject] = useState(false);
   const [projectId, setProjectId] = useState(null);
@@ -27,7 +32,33 @@ const ProjectsTables = () => {
     }
     fetchData();
   }, []);
-
+  const deleteProject = async (project) => {
+    const { titulo, portada, galeria } = project;
+    try {
+      const projectDeleted = await fetch('/api/deleteProject', {
+        method: 'POST',
+        body: JSON.stringify({ titulo }),
+      });
+      if (projectDeleted.status == 201) {
+        await fetch('/api/deletePhoto', {
+          method: 'POST',
+          body: JSON.stringify({ imageLink: portada }),
+        });
+        for (const photo of galeria) {
+          await fetch('/api/deletePhoto', {
+            method: 'POST',
+            body: JSON.stringify({ imageLink: photo }),
+          });
+        }
+        setOpenSuccessAlert(true);
+        window.location.reload();
+      } else {
+        setOpenBadAlert(true);
+      }
+    } catch (error) {
+      setOpenBadAlert(true);
+    }
+  };
   return (
     <div className="overflow-y-scroll h-full flex flex-col min-w-0 break-words border border-dashed bg-clip-border rounded-2xl border-stone-200 bg-light/30">
       <div className="px-9 pt-5 flex justify-between items-stretch flex-wrap min-h-[70px] pb-0 bg-transparent">
@@ -76,13 +107,21 @@ const ProjectsTables = () => {
                       </td>
 
                       <td className="p-3 pr-0 text-end">
-                        <EditOutlinedIcon
-                          className="cursor-pointer hover:text-life-green text-3xl"
-                          onClick={() => {
-                            setProjectId(project.titulo);
-                            setOpen(true);
-                          }}
-                        />
+                        <div>
+                          <EditOutlinedIcon
+                            className="cursor-pointer hover:text-life-green text-3xl mr-2"
+                            onClick={() => {
+                              setProjectId(project.titulo);
+                              setOpen(true);
+                            }}
+                          />
+                          <DeleteForeverOutlinedIcon
+                            className="ml-2 cursor-pointer hover:text-red-500 text-3xl"
+                            onClick={() => {
+                              deleteProject(project);
+                            }}
+                          />
+                        </div>
                       </td>
                     </tr>
                   );
@@ -90,6 +129,20 @@ const ProjectsTables = () => {
             </tbody>
           </table>
         </div>
+      </div>
+      <div className="mt-3 flex w-[30%] justify-center flex-col items-center self-center">
+        <SuccessAlert
+          open={openSuccessAlert}
+          setOpen={setOpenSuccessAlert}
+          message={'¡Se eliminó el projecto correctamente!'}
+        />
+        <BadAlert
+          open={openBadAlert}
+          setOpen={setOpenBadAlert}
+          message={
+            'Hubo un error en el proceso, revisa si se eliminó correctamente'
+          }
+        />
       </div>
       <ProjectDialog open={open} setOpen={setOpen} titulo={projectId} />
       <NewProjectDialog open={newProject} setOpen={setNewProject} />

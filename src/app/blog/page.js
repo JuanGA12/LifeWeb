@@ -9,7 +9,7 @@ export default function BlogPage() {
             BLOG
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

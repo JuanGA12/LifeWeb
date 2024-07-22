@@ -29,7 +29,7 @@ export default function ClientsPage() {
             <div></div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

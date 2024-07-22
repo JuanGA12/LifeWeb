@@ -63,9 +63,7 @@ export default function ProjectsPage() {
               return (
                 <SwiperSlide
                   key={idx}
-                  onClick={() =>
-                    router.push(`/projects/${item.titulo.toLocaleLowerCase()}`)
-                  }
+                  onClick={() => router.push(`/projects/${item.url}`)}
                 >
                   <div className="flex justify-center flex-col items-center cursor-pointer">
                     <img
@@ -82,7 +80,7 @@ export default function ProjectsPage() {
             })}
         </Swiper>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

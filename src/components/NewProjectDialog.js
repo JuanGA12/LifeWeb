@@ -85,6 +85,8 @@ export default function NewProjectDialog({ open, setOpen }) {
       }
 
       const project = {
+        orden: formData.get('orden'),
+        url: formData.get('titulo').replaceAll(' ', '_').toLocaleLowerCase(),
         titulo: formData.get('titulo').toLocaleLowerCase(),
         cliente: formData.get('cliente'),
         colaborador1: formData.get('colaborador1'),
@@ -106,6 +108,7 @@ export default function NewProjectDialog({ open, setOpen }) {
       if (responseProject.status == 201) {
         const responseProjectJson = await responseProject.json();
         setOpenSuccessAlert(true);
+        window.location.reload();
       } else {
         setOpenBadAlert(true);
       }
@@ -152,7 +155,7 @@ export default function NewProjectDialog({ open, setOpen }) {
             <form className="flex flex-col" onSubmit={(e) => handleSubmit(e)}>
               <div className="grid grid-cols-2 gap-8">
                 <div>
-                  <div className="grid grid-cols-2 gap-5 mb-4">
+                  <div className="grid grid-cols-3 gap-5 mb-4">
                     <div>
                       <label
                         htmlFor="titulo"
@@ -179,6 +182,21 @@ export default function NewProjectDialog({ open, setOpen }) {
                         type="text"
                         id="cliente"
                         name="cliente"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#131e2f]"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="orden"
+                        className="block mb-2 text-sm text-gray-600"
+                      >
+                        Orden
+                      </label>
+                      <input
+                        type="number"
+                        id="orden"
+                        name="orden"
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#131e2f]"
                         required
                       />
