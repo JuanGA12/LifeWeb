@@ -24,14 +24,14 @@ export async function POST(request) {
     if (projectDeleted.deletedCount == 1) {
       return NextResponse.json(
         {
-          message: 'Projecto eliminado',
+          message: 'Proyecto eliminado',
         },
         { status: 201 }
       );
     }
     return NextResponse.json(
       {
-        message: 'Error al eliminar projecto',
+        message: 'Error al eliminar proyecto',
       },
       {
         status: 400,

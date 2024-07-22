@@ -249,7 +249,7 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Editar projecto
+              Editar proyecto
             </Typography>
           </Toolbar>
         </AppBar>
