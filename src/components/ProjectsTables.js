@@ -122,7 +122,7 @@ const ProjectsTables = () => {
                           <EditOutlinedIcon
                             className="cursor-pointer hover:text-life-green text-3xl mr-2"
                             onClick={() => {
-                              setProjectId(project.titulo);
+                              setProjectId(project._id);
                               setOpen(true);
                             }}
                           />
@@ -155,7 +155,7 @@ const ProjectsTables = () => {
           }
         />
       </div>
-      <ProjectDialog open={open} setOpen={setOpen} titulo={projectId} />
+      <ProjectDialog open={open} setOpen={setOpen} _id={projectId} />
       <NewProjectDialog open={newProject} setOpen={setNewProject} />
     </div>
   );

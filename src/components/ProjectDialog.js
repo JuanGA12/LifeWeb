@@ -17,14 +17,14 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ProjectDialog({ open, setOpen, titulo }) {
+export default function ProjectDialog({ open, setOpen, _id }) {
   const router = useRouter();
   const [project, setProject] = useState(null);
   useEffect(() => {
     async function fetchData() {
-      const projectFound = await fetch('/api/getProjectByName', {
+      const projectFound = await fetch('/api/getProjectById', {
         method: 'POST',
-        body: JSON.stringify({ titulo }),
+        body: JSON.stringify({ _id }),
       });
 
       if (projectFound.status == 201) {

@@ -6,7 +6,10 @@ import mongoose from 'mongoose';
 export async function GET(request) {
   try {
     await connectDB();
-    const projects = await Project.find({}, 'titulo portada url galeria orden');
+    const projects = await Project.find(
+      {},
+      '_id titulo portada url galeria orden'
+    );
     console.log(projects);
     if (projects.length == 0) {
       return NextResponse.json(
