@@ -7,10 +7,11 @@ export async function GET(request) {
   try {
     await connectDB();
     const projects = await Project.find({}, 'titulo portada url galeria orden');
+    console.log(projects);
     if (projects.length == 0) {
       return NextResponse.json(
         { message: 'No projects founds' },
-        { status: 409 }
+        { status: 403 }
       );
     } else {
       const sortedProjects = projects.slice().sort((a, b) => {
