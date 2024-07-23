@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer';
 
 export default function BlogPage() {
+  const fol = 'adfa\nde';
   return (
     <div className="w-screen h-[100dvh] pt-20 px-10 md:px-24 md:pt-20 lg:px-28 lg:pt-24 xl:px-56 xl:pt-32">
       <div className="w-full h-full flex flex-col justify-between">

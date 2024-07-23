@@ -8,8 +8,10 @@ import NewProjectDialog from './NewProjectDialog';
 import { useRouter } from 'next/navigation';
 import SuccessAlert from './SuccessAlert';
 import BadAlert from './BadAlert';
+import Loader from './Loader';
 
 const ProjectsTables = () => {
+  const [loader, setLoader] = useState(false);
   const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
   const [openBadAlert, setOpenBadAlert] = useState(false);
   const [open, setOpen] = useState(false);
@@ -35,6 +37,7 @@ const ProjectsTables = () => {
   const deleteProject = async (project) => {
     const { titulo, portada, galeria } = project;
     try {
+      setLoader(true);
       const projectDeleted = await fetch('/api/deleteProject', {
         method: 'POST',
         body: JSON.stringify({ titulo }),
@@ -55,12 +58,20 @@ const ProjectsTables = () => {
       } else {
         setOpenBadAlert(true);
       }
+      setLoader(false);
     } catch (error) {
       setOpenBadAlert(true);
+      setLoader(false);
     }
   };
   return (
     <div className="overflow-y-scroll h-full flex flex-col min-w-0 break-words border border-dashed bg-clip-border rounded-2xl border-stone-200 bg-light/30">
+      {loader && (
+        <div className="h-screen w-screen absolute top-0 flex flex-col justify-center items-center bg-white z-50">
+          <Loader />
+          Borrando...
+        </div>
+      )}
       <div className="px-9 pt-5 flex justify-between items-stretch flex-wrap min-h-[70px] pb-0 bg-transparent">
         <h3 className="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
           <span className="mr-3 font-semibold text-dark">Proyectos</span>

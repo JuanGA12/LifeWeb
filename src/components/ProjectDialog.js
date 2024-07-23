@@ -234,7 +234,7 @@ export default function ProjectDialog({ open, setOpen, titulo }) {
         {loader && (
           <div className="h-screen w-screen absolute top-0 flex flex-col justify-center items-center bg-white z-50">
             <Loader />
-            Editing...
+            Editando...
           </div>
         )}
 
