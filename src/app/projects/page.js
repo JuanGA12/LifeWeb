@@ -19,7 +19,8 @@ export default function ProjectsPage() {
   useEffect(() => {
     async function fetchData() {
       const listPro = await fetch('/api/getProjectsCarrousel', {
-        method: 'GET',
+        method: 'POST',
+        body: JSON.stringify({ verified: 'x03.5' }),
       });
       if (listPro.status == 201) {
         const listProJson = await listPro.json();

@@ -2,6 +2,7 @@
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import ProjectsTables from '@/components/ProjectsTables';
 import { signOut, useSession } from 'next-auth/react';
+
 export default function ManagerPage() {
   const { data: session, status } = useSession();
 

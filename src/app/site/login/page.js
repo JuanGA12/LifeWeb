@@ -7,7 +7,7 @@ export default function LoginPage() {
   const router = useRouter();
   const { data: session, status } = useSession();
   useEffect(() => {
-    if (status == 'authenticated') router.push('/site/manager');
+    if (status == 'authenticated') router.push('/site/manager/');
   }, [status]);
 
   const [error, setError] = useState('');

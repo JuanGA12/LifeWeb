@@ -5,7 +5,7 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import ProjectDialog from './ProjectDialog';
 import { useEffect, useState } from 'react';
 import NewProjectDialog from './NewProjectDialog';
-import { useRouter } from 'next/navigation';
+
 import SuccessAlert from './SuccessAlert';
 import BadAlert from './BadAlert';
 import Loader from './Loader';
@@ -18,12 +18,12 @@ const ProjectsTables = () => {
   const [newProject, setNewProject] = useState(false);
   const [projectId, setProjectId] = useState(null);
   const [list, setList] = useState(null);
-  const router = useRouter();
 
   useEffect(() => {
     async function fetchData() {
       const listPro = await fetch('/api/getProjectsCarrousel', {
-        method: 'GET',
+        method: 'POST',
+        body: JSON.stringify({ verified: 'x03.5' }),
       });
       if (listPro.status == 201) {
         const listProJson = await listPro.json();
