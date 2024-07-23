@@ -34,10 +34,10 @@ export default function ProjectDialog({ open, setOpen, _id }) {
         router.push('/error');
       }
     }
-    if (titulo) {
+    if (_id) {
       fetchData();
     }
-  }, [titulo]);
+  }, [_id]);
 
   const handleClose = () => {
     setEditTitulo(null);
