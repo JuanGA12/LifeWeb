@@ -481,7 +481,7 @@ export default function ProjectDialog({ open, setOpen, _id }) {
                         htmlFor="portada"
                         className="block mb-2 text-sm text-gray-600"
                       >
-                        Foto de portada (750px x 750px)
+                        Foto de portada (750px x 750px) peso máx(4.5mb)
                       </label>
                       Cambiar portada
                       <input
@@ -502,7 +502,7 @@ export default function ProjectDialog({ open, setOpen, _id }) {
                         htmlFor="galeria"
                         className="block mb-2 text-sm text-gray-600"
                       >
-                        Galeria de imagenes
+                        Galeria de imagenes peso máx(4.5mb)
                       </label>
                       Agregar imágenes
                       <input
