@@ -21,14 +21,9 @@ export async function POST(request) {
 
     const blog = {
       _id: data._id,
-      parrafo1ES: data.parrafo1ES,
-      parrafo1EN: data.parrafo1EN,
-      parrafo2ES: data.parrafo2ES,
-      parrafo2EN: data.parrafo2EN,
-      parrafo3ES: data.parrafo3ES,
-      parrafo3EN: data.parrafo3EN,
+      parrafoEN: data.parrafoEN,
+      parrafoES: data.parrafoES,
     };
-
     const updateBlog = await Blog.findOneAndUpdate(
       { _id: blog._id },
       { $set: blog },

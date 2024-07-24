@@ -26,12 +26,12 @@ export default function BlogDialog({ open, setOpen }) {
   const [openBadAlert, setOpenBadAlert] = useState(false);
   const [loader, setLoader] = useState(false);
 
-  const [parrafo1ES, setParrafo1ES] = useState(null);
-  const [parrafo1EN, setParrafo1EN] = useState(null);
-  const [parrafo2ES, setParrafo2ES] = useState(null);
-  const [parrafo2EN, setParrafo2EN] = useState(null);
-  const [parrafo3ES, setParrafo3ES] = useState(null);
-  const [parrafo3EN, setParrafo3EN] = useState(null);
+  const [parrafoES, setParrafoES] = useState(null);
+  const [parrafoEN, setParrafoEN] = useState(null);
+  //   const [parrafo2ES, setParrafo2ES] = useState(null);
+  //   const [parrafo2EN, setParrafo2EN] = useState(null);
+  //   const [parrafo3ES, setParrafo3ES] = useState(null);
+  //   const [parrafo3EN, setParrafo3EN] = useState(null);
   const validateInput = (a, b) => {
     if (a != null && a != '') {
       return a;
@@ -69,13 +69,10 @@ export default function BlogDialog({ open, setOpen }) {
       setLoader(true);
       const editBlog = {
         _id: blog._id,
-        parrafo1ES: formData.get('parrafo1ES'),
-        parrafo1EN: formData.get('parrafo1EN'),
-        parrafo2ES: formData.get('parrafo2ES'),
-        parrafo2EN: formData.get('parrafo2EN'),
-        parrafo3ES: formData.get('parrafo3ES'),
-        parrafo3EN: formData.get('parrafo3EN'),
+        parrafoES: formData.get('parrafoES'),
+        parrafoEN: formData.get('parrafoEN'),
       };
+
       const responseBlog = await fetch('/api/updateBlog', {
         method: 'POST',
         body: JSON.stringify(editBlog),
@@ -129,50 +126,51 @@ export default function BlogDialog({ open, setOpen }) {
           </Toolbar>
         </AppBar>
         <div>
-          <div className="w-screen p-10">
+          <div className="w-screen h-screen p-10">
             {blog && (
-              <form className="flex flex-col" onSubmit={(e) => handleSubmit(e)}>
-                <div className="grid grid-cols-1 gap-8">
-                  <div>
-                    <div className="grid grid-cols-2 mb-4 gap-5">
-                      <div className="">
-                        <label
-                          htmlFor="parrafo1ES"
-                          className="block mb-2 text-sm text-gray-600"
-                        >
-                          Párrafo 1 español
-                        </label>
-                        <textarea
-                          onChange={(e) => {
-                            setParrafo1ES(e.target.value);
-                          }}
-                          value={validateInput(parrafo1ES, blog.parrafo1ES)}
-                          type="text"
-                          id="parrafo1ES"
-                          name="parrafo1ES"
-                          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                        />
-                      </div>
-                      <div className="">
-                        <label
-                          htmlFor="parrafo1EN"
-                          className="block mb-2 text-sm text-gray-600"
-                        >
-                          Párrafo 1 ingles
-                        </label>
-                        <textarea
-                          onChange={(e) => {
-                            setParrafo1EN(e.target.value);
-                          }}
-                          value={validateInput(parrafo1EN, blog.parrafo1EN)}
-                          type="text"
-                          id="parrafo1EN"
-                          name="parrafo1EN"
-                          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 mb-4 gap-5">
+              <form
+                className="flex flex-col h-full"
+                onSubmit={(e) => handleSubmit(e)}
+              >
+                <div className="grid grid-cols-2 mb-4 gap-5 h-4/6">
+                  <div className="h-full">
+                    <label
+                      htmlFor="parrafoES"
+                      className="block mb-2 text-sm text-gray-600"
+                    >
+                      Párrafo español
+                    </label>
+                    <textarea
+                      onChange={(e) => {
+                        setParrafoES(e.target.value);
+                      }}
+                      value={validateInput(parrafoES, blog.parrafoES)}
+                      type="text"
+                      id="parrafoES"
+                      name="parrafoES"
+                      className="w-full h-5/6 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                    />
+                  </div>
+                  <div className="">
+                    <label
+                      htmlFor="parrafoEN"
+                      className="block mb-2 text-sm text-gray-600"
+                    >
+                      Párrafo ingles
+                    </label>
+                    <textarea
+                      onChange={(e) => {
+                        setParrafoEN(e.target.value);
+                      }}
+                      value={validateInput(parrafoEN, blog.parrafoEN)}
+                      type="text"
+                      id="parrafoEN"
+                      name="parrafoEN"
+                      className="w-full h-5/6 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                    />
+                  </div>
+                </div>
+                {/* <div className="grid grid-cols-2 mb-4 gap-5">
                       <div className="">
                         <label
                           htmlFor="parrafo2ES"
@@ -247,9 +245,7 @@ export default function BlogDialog({ open, setOpen }) {
                           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
                         />
                       </div>
-                    </div>
-                  </div>
-                </div>
+                    </div> */}
 
                 <button
                   //   onClick={() => setOpen(false)}

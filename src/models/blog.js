@@ -1,29 +1,13 @@
 import { Schema, model, models } from 'mongoose';
 
 const blogSchema = new Schema({
-  parrafo1ES: {
+  parrafoES: {
     type: String,
     required: [true, 'Parrafo 1 en español es requerido'],
   },
-  parrafo1EN: {
+  parrafoEN: {
     type: String,
     required: [true, 'Parrafo 1 en ingles es requerido'],
-  },
-  parrafo2ES: {
-    type: String,
-    required: [true, 'Parrafo 2 en español es requerido'],
-  },
-  parrafo2EN: {
-    type: String,
-    required: [true, 'Parrafo 2 en ingles es requerido'],
-  },
-  parrafo3ES: {
-    type: String,
-    required: [true, 'Parrafo 3 en español es requerido'],
-  },
-  parrafo3EN: {
-    type: String,
-    required: [true, 'Parrafo 3 en ingles es requerido'],
   },
 });
 
