@@ -138,7 +138,7 @@ export default function BlogDialog({ open, setOpen }) {
                       htmlFor="parrafoES"
                       className="block mb-2 text-sm text-gray-600"
                     >
-                      Párrafo español
+                      Texto español
                     </label>
                     <textarea
                       onChange={(e) => {
@@ -156,7 +156,7 @@ export default function BlogDialog({ open, setOpen }) {
                       htmlFor="parrafoEN"
                       className="block mb-2 text-sm text-gray-600"
                     >
-                      Párrafo ingles
+                      Texto ingles
                     </label>
                     <textarea
                       onChange={(e) => {
