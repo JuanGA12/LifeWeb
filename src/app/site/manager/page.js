@@ -2,6 +2,7 @@
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import ProjectsTables from '@/components/ProjectsTables';
 import { signOut, useSession } from 'next-auth/react';
+import SectionsTables from '@/components/SectionsTables';
 
 export default function ManagerPage() {
   const { data: session, status } = useSession();
@@ -12,8 +13,8 @@ export default function ManagerPage() {
         <div className="px-10 flex flex-col h-[80%] justify-center">
           <ProjectsTables />
         </div>
-        <div className="px-10 flex flex-col justify-center">
-          Sección Blog proximamente
+        <div className="px-10 flex flex-col h-[80%] justify-center">
+          <SectionsTables />
         </div>
       </div>
       <div className="absolute top-4 right-5 flex">

@@ -64,7 +64,7 @@ export default function NewUserDialog({ open, setOpen, id }) {
         {loader && (
           <div className="h-screen w-screen absolute top-0 flex flex-col justify-center items-center bg-white z-50">
             <Loader />
-            Uploading...
+            Subiendo...
           </div>
         )}
 
@@ -110,7 +110,7 @@ export default function NewUserDialog({ open, setOpen, id }) {
                     htmlFor="password"
                     className="block mb-2 mt-5 text-sm text-gray-600"
                   >
-                    Password
+                    Contraseña
                   </label>
                   <input
                     type="text"
@@ -125,7 +125,7 @@ export default function NewUserDialog({ open, setOpen, id }) {
                     htmlFor="passwordManager"
                     className="block mb-2 mt-5 text-sm text-gray-600"
                   >
-                    Enter your Manager Password again
+                    Vuelve a ingresar la Contraseña Maestra
                   </label>
                   <input
                     type="text"

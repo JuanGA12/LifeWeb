@@ -124,7 +124,7 @@ export default function UserDialog({
         {loader && (
           <div className="h-screen w-screen absolute top-0 flex flex-col justify-center items-center bg-white z-50">
             <Loader />
-            Uploading...
+            Editando...
           </div>
         )}
 
